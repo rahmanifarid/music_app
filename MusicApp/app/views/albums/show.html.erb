@@ -1,0 +1,17 @@
+<%= @album.name %>
+
+<%= button_to "Back", band_url(@album.band_id), method: :get %>
+
+
+<br><br><br><br>
+<ul>
+  <% @album.tracks.each do |track| %>
+    <li>
+      <%= link_to track.name, track_url(track), method: :get %>
+    </li>
+  <% end %>
+</ul>
+
+<%= button_to "Add Track", new_album_track_url(@album), method: :get %>
+<%= button_to "Edit", edit_album_url(@album), method: :get %>
+<%= button_to "Delete", album_url(@album), method: :delete %>

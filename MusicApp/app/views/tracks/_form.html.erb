@@ -1,0 +1,21 @@
+<% if @track.name %>
+  <% action_url = track_url(@track) %>
+  <% else %>
+  <% action_url = tracks_url %>
+  <% end %>
+<form action="<%= action_url %>" method="post">
+  <% if @track.name %>
+    <input type="hidden" name="_method" value="Patch">
+  <% end %>
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="track_name">Track Name</label>
+  <input type="text" name="track[name]" value="<%= @track.name %>" id="track_name">
+  <label for="lyrics">Lyrics</label>
+
+  <textarea id="lyrics" name="track[lyrics]" ><%=@track.lyrics%></textarea>
+  <input type="hidden" name="track[album_id]" value="<%=@album.id%>">
+
+  <input type="submit" value="<%= @track.name.nil? ? 'Create' : 'Update' %>">
+</form>

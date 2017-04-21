@@ -1,0 +1,13 @@
+<p>Title:</p>
+<%= @track.name %>
+<br><br>
+
+<%= button_to "Back", album_url(@track.album_id), method: :get %>
+
+<br><br>
+
+<p>Lyrics:</p>
+<%= @track.lyrics %>
+
+<%= button_to "Edit", edit_track_url(@track), method: :get %>
+<%= button_to "Delete", track_url(@track), method: :delete %>

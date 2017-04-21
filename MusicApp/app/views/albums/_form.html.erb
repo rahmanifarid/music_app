@@ -1,0 +1,21 @@
+<% if @album.name %>
+  <% action_url = album_url(@album) %>
+  <% else %>
+  <% action_url = albums_url %>
+  <% end %>
+<form action="<%= action_url %>" method="post">
+  <% if @album.name %>
+    <input type="hidden" name="_method" value="Patch">
+  <% end %>
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="album_name">Album Name</label>
+  <input type="text" name="album[name]" value="<%= @album.name %>" id="album_name">
+  <label for="style">Style</label>
+  <input type="text" name="album[style]" id="style" value="<%=@album.style%>" >
+
+  <input type="hidden" name="album[band_id]" value="<%=@band.id%>">
+
+  <input type="submit" value="<%= @album.name.nil? ? 'Create' : 'Update' %>">
+</form>

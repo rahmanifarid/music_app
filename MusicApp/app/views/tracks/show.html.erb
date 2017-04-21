@@ -11,3 +11,26 @@
 
 <%= button_to "Edit", edit_track_url(@track), method: :get %>
 <%= button_to "Delete", track_url(@track), method: :delete %>
+
+<br><br><br>
+
+<ul>
+<% @track.notes.each do |note| %>
+  <li><%= note.text %> - <%= note.user.email %></li>
+  <% if note.user_id == current_user.id %>
+    <%= button_to "Delete", note_url(note), method: :delete %>
+  <% end %>
+<% end %>
+</ul>
+
+<form action="<%=notes_url%>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="note[track_id]" value="<%=@track.id%>">
+  <input type="hidden" name="note[user_id]" value="<%=current_user.id%>">
+
+  <label for="note"></label>
+  <textarea id="note" name="note[text]" placeholder="Write a Comment"></textarea>
+
+  <input type="submit" value="post">
+
+</form>

@@ -9,5 +9,9 @@ Rails.application.routes.draw do
   resources :albums, except: [:index] do
     resources :tracks, only: [:new]
   end
+  
   resources :tracks
+
+  resources :notes, only: [:create, :destroy]
+
 end

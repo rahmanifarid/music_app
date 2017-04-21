@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :notes, dependent: :destroy
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
